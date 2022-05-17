@@ -16,8 +16,7 @@ interface IFormInput {
   clientEmail: string;
 }
 
-const phoneRegExp = /^(\d{2,3})?[- ]?(\d{3,4})[- ]?(\d{4})$/;
-const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const phoneRegExp = /^(\d{2,3})-(\d{3,4})-(\d{4})$/;
 
 const schema = yup.object({
   name: yup
@@ -42,7 +41,7 @@ const schema = yup.object({
     .matches(phoneRegExp, 'Invalid format phone number'),
   clientEmail: yup
     .string()
-    .matches(emailRegExp, 'Invalid format email'),
+    .email('Invalid email'),
 });
 
 function App() {
